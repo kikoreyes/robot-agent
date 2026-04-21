@@ -32,7 +32,11 @@ jobs:
       - name: Install dependencies
         run: pip install pyinstaller flask flask-cors pyngrok pyautogui pyperclip pillow
       - name: Build Mac App
-        run: pyinstaller --onefile --windowed --name "RobotAgent" agent.py
+        run: pyinstaller --onefile --name "RobotAgent" agent.py
+      - name: Remove quarantine & sign ad-hoc
+        run: |
+          codesign --force --deep --sign - dist/RobotAgent
+          xattr -cr dist/RobotAgent
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
