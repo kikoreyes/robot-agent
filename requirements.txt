@@ -1,0 +1,6 @@
+flask
+flask-cors
+pyngrok
+pyautogui
+pyperclip
+pillow
